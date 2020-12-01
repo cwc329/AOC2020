@@ -24,10 +24,11 @@ function solve(inputs) {
   let result = 0;
   for (let i = 0; i < arr.length; i ++) {
     for (let j = i + 1; j < arr.length; j ++) {
-      if (arr[i] + arr[j] === 2020) {
-        result = arr[i] * arr[j];
-        break;
-      }
+      for (let k = j + 1; k < arr.length; k ++)
+        if (arr[i] + arr[j] + arr[k] === 2020) {
+          result = arr[i] * arr[j] * arr[k];
+          break;
+        }
     }
   }
   console.log(result);
