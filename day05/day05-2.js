@@ -26,25 +26,26 @@ function solve(inputs) {
     seats.push(Array(8))
   }
   inputs.forEach(element => {
-    let row = [0, 127];
-    let column = [0, 7];
+    let rowRange = [0, 127];
+    let columnRange = [0, 7];
+    const seat = { row: 0, column: 0 };
     for (let i = 0; i < 7; i++) {
       if (element[i] === 'F') {
-        row[1] = Math.floor((row[0] + row[1]) / 2);
+        rowRange[1] = Math.floor((rowRange[0] + rowRange[1]) / 2);
+        seat.row = rowRange[0]
       } else {
-        row[0] = Math.ceil((row[0] + row[1]) / 2);
+        rowRange[0] = Math.ceil((rowRange[0] + rowRange[1]) / 2);
+        seat.row = rowRange[1]
       }
     }
     for (let j = 7; j <= element.length; j++) {
       if (element[j] === 'L') {
-        column[1] = Math.floor((column[0] + column[1]) / 2);
+        columnRange[1] = Math.floor((columnRange[0] + columnRange[1]) / 2);
+        seat.column = columnRange[0];
       } else {
-        column[0] = Math.ceil((column[0] + column[1]) / 2);
+        columnRange[0] = Math.ceil((columnRange[0] + columnRange[1]) / 2);
+        seat.column = columnRange[1];
       }
-    }
-    let result = {
-      row: element[6] === 'F' ? row[0] : row[1],
-      column: element[9] === 'L' ? column[0] : column[1],
     }
     if (result.row * 8 + result.column > max) {
       max = result.row * 8 + result.column;
