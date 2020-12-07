@@ -25,7 +25,12 @@ function solve(inputs) {
   }).map(bag => { const obj = {}; obj[bag[0]] = bag.splice(1); return obj });
   let rules = {};
   arr.forEach(el => { rules = Object.assign(rules, el) });
-
+  for (const key in rules) {
+    rules[key] = rules[key].map(el => {
+      return el.replace(' ', ',').split(',');
+    })
+  }
+  console.log(rules)
   function test2(arr, bags) {
     let inside = arr[bags];
     let count = 0;
@@ -35,7 +40,7 @@ function solve(inputs) {
       if (!number) {
         return 0;
       } else {
-        count += number + number * test2(arr, inside[i].slice(2));
+        count += number + number * test2(arr, inside[i][1]);
       }
     }
     return count;

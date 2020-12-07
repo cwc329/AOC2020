@@ -38,7 +38,7 @@ function solve(inputs) {
       }
     }
   }
-  console.log({ target, result }, result.length);
+  console.log(result.length);
 }
 
 processLineByLine();
