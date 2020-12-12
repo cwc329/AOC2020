@@ -37,18 +37,10 @@ function solve(inputs) {
     y: 0,
     face: 90,
   };
-
-  for (let i = 0; i < route.length; i++) {
-    go(route[i]);
-  }
-
-  console.log(route)
-  console.log(Math.abs(currentStatus.x) + Math.abs(currentStatus.y));
   function go([dir, amount]) {
     let direction = dir;
     if (dir === 'F') {
       direction = degrees[currentStatus.face / 90];
-      console.log(direction)
     }
 
     switch (direction) {
@@ -72,6 +64,11 @@ function solve(inputs) {
         return;
     }
   }
+
+  for (let i = 0; i < route.length; i++) {
+    go(route[i]);
+  }
+  console.log(Math.abs(currentStatus.x) + Math.abs(currentStatus.y));
 }
 
 processLineByLine();

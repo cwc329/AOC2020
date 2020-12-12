@@ -26,7 +26,6 @@ function solve(inputs) {
     const amount = Number(el.slice(1));
     return [direction, amount];
   });
-
   let waypoint = {
     x: 10,
     y: 1
@@ -36,14 +35,6 @@ function solve(inputs) {
     y: 0,
     face: 90,
   };
-
-  for (let i = 0; i < route.length; i++) {
-    go(route[i]);
-    console.log({ waypoint, currentStatus })
-  }
-
-  console.log(route)
-  console.log(Math.abs(currentStatus.x) + Math.abs(currentStatus.y));
   function calWaypoint(degree, { x, y }) {
     const converts = [
       [x, y],
@@ -52,13 +43,12 @@ function solve(inputs) {
       [-y, x],
     ];
     const [newX, newY] = converts[degree / 90]
-    console.log({ newX, newY })
+
     return {
       x: newX,
       y: newY
     }
   }
-
   function go([dir, amount]) {
     let direction = dir;
 
@@ -87,6 +77,10 @@ function solve(inputs) {
         return;
     }
   }
+  for (let i = 0; i < route.length; i++) {
+    go(route[i]);
+  }
+  console.log(Math.abs(currentStatus.x) + Math.abs(currentStatus.y));
 }
 
 processLineByLine();
