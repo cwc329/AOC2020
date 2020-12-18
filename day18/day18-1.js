@@ -53,14 +53,12 @@ function solve(inputs) {
         } else {
           el = Number(el);
         }
-        // console.log(el);
         if (!pre) {
           pre = el;
         } else if (!next) {
           next = el;
         }
       }
-      // console.log({ pre, next, action })
       if (action && pre && next) {
         pre = actions[action](pre, next);
         result = pre;

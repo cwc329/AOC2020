@@ -32,20 +32,6 @@ function solve(inputs) {
     .replace(/\ /g, ',')
     + ']'));
 
-  function recu(el) {
-    switch (typeof (el)) {
-      case 'number':
-        return Number(el);
-      case 'string':
-        return el;
-      case 'object':
-        return el.map(recu);
-    }
-  }
-  // console.log(arr.map(recu));
-
-  const numArr = arr.map(recu)
-
   let sum = 0;
   for (let i = 0; i < arr.length; i++) {
     sum += sumUp(arr[i]);
